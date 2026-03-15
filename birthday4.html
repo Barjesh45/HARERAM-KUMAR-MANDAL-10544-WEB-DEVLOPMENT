@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cinematic Birthday</title>
+
+<style>
+
+body{
+margin:0;
+background:black;
+font-family:Arial;
+color:white;
+text-align:center;
+overflow-x:hidden;
+}
+
+/* cinematic intro */
+
+#intro{
+position:fixed;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:10;
+animation:fadeIntro 2s;
+}
+
+@keyframes fadeIntro{
+from{opacity:0}
+to{opacity:1}
+}
+
+#startBtn{
+padding:15px 40px;
+font-size:22px;
+background:gold;
+border:none;
+border-radius:40px;
+cursor:pointer;
+box-shadow:0 0 20px gold;
+}
+
+/* stars */
+
+.star{
+position:absolute;
+width:2px;
+height:2px;
+background:white;
+animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+from{opacity:.2}
+to{opacity:1}
+}
+
+/* heading */
+
+h1{
+font-size:60px;
+margin-top:40px;
+color:gold;
+text-shadow:0 0 10px gold,0 0 40px orange;
+animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+from{transform:scale(1)}
+to{transform:scale(1.05)}
+}
+
+/* typing message */
+
+#message{
+font-size:26px;
+width:80%;
+margin:auto;
+margin-top:30px;
+line-height:40px;
+text-shadow:0 0 5px pink,0 0 20px hotpink;
+}
+
+.letter{
+display:inline-block;
+opacity:0;
+animation:fadeUp .5s forwards;
+}
+
+@keyframes fadeUp{
+0%{opacity:0;transform:translateY(20px)}
+100%{opacity:1;transform:translateY(0)}
+}
+
+/* gallery */
+
+.gallery{
+width:220px;
+height:220px;
+margin:80px auto;
+position:relative;
+transform-style:preserve-3d;
+animation:rotate 25s linear infinite;
+}
+
+.gallery img{
+position:absolute;
+width:220px;
+height:220px;
+object-fit:cover;
+border-radius:15px;
+box-shadow:0 0 25px pink;
+}
+
+.gallery img:nth-child(1){transform:rotateY(0deg) translateZ(350px);}
+.gallery img:nth-child(2){transform:rotateY(36deg) translateZ(350px);}
+.gallery img:nth-child(3){transform:rotateY(72deg) translateZ(350px);}
+.gallery img:nth-child(4){transform:rotateY(108deg) translateZ(350px);}
+.gallery img:nth-child(5){transform:rotateY(144deg) translateZ(350px);}
+.gallery img:nth-child(6){transform:rotateY(180deg) translateZ(350px);}
+.gallery img:nth-child(7){transform:rotateY(216deg) translateZ(350px);}
+.gallery img:nth-child(8){transform:rotateY(252deg) translateZ(350px);}
+.gallery img:nth-child(9){transform:rotateY(288deg) translateZ(350px);}
+.gallery img:nth-child(10){transform:rotateY(324deg) translateZ(350px);}
+
+@keyframes rotate{
+from{transform:rotateY(0deg)}
+to{transform:rotateY(360deg)}
+}
+
+/* cake */
+
+.cake{
+width:200px;
+margin:60px auto;
+position:relative;
+}
+
+/* cake layers */
+
+.layer{
+width:200px;
+height:45px;
+border-radius:12px;
+margin:auto;
+box-shadow:0 6px 15px rgba(0,0,0,.3);
+}
+
+.layer1{
+background:#ff8fa3;
+}
+
+.layer2{
+background:#ff6b81;
+}
+
+.layer3{
+background:#ff4d6d;
+}
+
+/* cream top */
+
+.topCream{
+width:200px;
+height:20px;
+background:white;
+border-radius:50%;
+position:absolute;
+top:-10px;
+left:0;
+box-shadow:0 0 10px pink;
+}
+
+/* candle */
+
+.candle{
+width:12px;
+height:40px;
+background:white;
+position:absolute;
+top:-45px;
+left:50%;
+transform:translateX(-50%);
+border-radius:4px;
+cursor:pointer;
+}
+
+/* flame */
+
+.flame{
+width:18px;
+height:18px;
+background:orange;
+border-radius:50%;
+position:absolute;
+top:-18px;
+left:-3px;
+box-shadow:0 0 15px orange,0 0 30px yellow;
+animation:flicker .3s infinite;
+}
+@keyframes flicker{
+0%{transform:scale(1)}
+50%{transform:scale(1.3)}
+100%{transform:scale(1)}
+}
+
+/* future doctor */
+
+.futureDoctor{
+font-size:60px;
+margin-top:20px;
+}
+
+.futureDoctor span{
+font-size:90px;
+}
+
+/* gift box */
+
+.giftBox{
+width:150px;
+height:150px;
+background:#ff4d6d;
+margin:60px auto;
+position:relative;
+cursor:pointer;
+border-radius:10px;
+box-shadow:0 0 25px pink;
+}
+
+.lid{
+width:150px;
+height:40px;
+background:#ff1f4b;
+position:absolute;
+top:-40px;
+left:0;
+transition:1s;
+}
+
+.ribbon{
+width:20px;
+height:150px;
+background:white;
+position:absolute;
+left:65px;
+}
+
+/* letter */
+
+.letterBox{
+width:300px;
+background:white;
+color:black;
+padding:20px;
+border-radius:10px;
+margin:20px auto;
+display:none;
+box-shadow:0 0 20px pink;
+}
+
+/* hearts */
+
+.heart{
+position:fixed;
+color:pink;
+font-size:20px;
+animation:heartFly 4s linear forwards;
+}
+
+@keyframes heartFly{
+0%{transform:translateY(0) scale(1);opacity:1}
+100%{transform:translateY(-600px) scale(2);opacity:0}
+}
+
+/* balloons */
+
+.balloon{
+position:absolute;
+bottom:-100px;
+width:50px;
+height:70px;
+border-radius:50%;
+animation:float 8s infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0)}
+100%{transform:translateY(-120vh)}
+}
+
+/* confetti */
+
+.confetti{
+position:fixed;
+width:10px;
+height:10px;
+top:-10px;
+animation:fall linear infinite;
+}
+
+@keyframes fall{
+0%{transform:translateY(-10px) rotate(0deg)}
+100%{transform:translateY(100vh) rotate(360deg)}
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="intro">
+<h1>🎬 Special Birthday Surprise</h1>
+<button id="startBtn" onclick="start()">Start</button>
+</div>
+
+<h1>Happy Birthday Sister 🎉</h1>
+
+<div id="message"></div>
+
+<!-- gallery -->
+
+<div class="gallery">
+<img src="WhatsApp Image 2026-03-15 at 8.56.09 AM (1).jpeg">
+<img src="WhatsApp Image 2026-03-15 at 8.56.09 AM (2).jpeg">
+<img src="WhatsApp Image 2026-03-15 at 8.56.09 AM.jpeg">
+<img src="WhatsApp Image 2026-03-15 at 8.56.10 AM (1).jpeg">
+<img src="WhatsApp Image 2026-03-15 at 8.56.10 AM (2).jpeg">
+<img src="WhatsApp Image 2026-03-15 at 8.56.10 AM (3).jpeg">
+<img src="WhatsApp Image 2026-03-15 at 8.56.10 AM.jpeg">
+<img src="WhatsApp Image 2026-03-15 at 8.56.11 AM (1).jpeg">
+<img src="WhatsApp Image 2026-03-15 at 8.56.11 AM.jpeg">
+<img src="photo10.jpg">
+</div>
+
+<!-- cake -->
+
+<div class="cake">
+
+<div class="topCream"></div>
+
+<div class="layer layer1"></div>
+<div class="layer layer2"></div>
+<div class="layer layer3"></div>
+
+<div class="candle" onclick="blow()">
+<div class="flame" id="flame"></div>
+</div>
+
+</div>
+
+
+<div class="futureDoctor">
+Future Doctor <span>👩‍⚕️</span>
+</div>
+
+<!-- gift box -->
+
+<div class="giftBox" onclick="openGift()">
+
+<div class="lid" id="lid"></div>
+
+<div class="ribbon"></div>
+
+</div>
+
+<div class="letterBox" id="letter">
+
+<p>
+
+Dear Sister ❤️  
+You are the most amazing person in my life.  
+I know one day you will become a great doctor and make us proud.
+
+<br><br>
+
+Happy Birthday 🎂
+
+</p>
+
+</div>
+
+<audio id="music" loop>
+<source src="C:\Users\HP\OneDrive\Documents\Downloads\Manni Sandhu  Navaan Sandhu - In Demand (Official Video)  Latest Punjabi Songs 2018.mp3">
+</audio>
+
+<script>
+
+function start(){
+document.getElementById("intro").style.display="none"
+document.getElementById("music").play()
+typing()
+}
+
+/* typing */
+
+let text="Happy Birthday to the most amazing and caring sister in the world! You are not just my sister, you are my biggest supporter, my best friend, and my greatest strength. Thank you for always supporting me, caring for me, and believing in me no matter what. Your kindness, love, and strength inspire me every single day. Whenever I feel lost or sad, you are always there to guide me and make everything better.Your dream of becoming a doctor and helping others shows how kind and beautiful your heart truly is. You care like an angel, and I feel so lucky and proud to call you my sister. On your special day, I wish you endless happiness, success, and all the beautiful moments you truly deserve. May all your dreams come true and may your smile always shine bright. Happy Birthday once again, my wonderful sister!"
+let i=0
+
+function typing(){
+if(i < text.length){
+
+let char = text.charAt(i)
+
+if(char === " "){
+document.getElementById("message").innerHTML += " "
+}else{
+document.getElementById("message").innerHTML +=
+'<span class="letter">'+char+'</span>'
+}
+
+i++
+setTimeout(typing,40)
+
+}
+}
+
+/* candle */
+
+function blow(){
+document.getElementById("flame").style.display="none"
+}
+
+/* gift open */
+
+function openGift(){
+
+document.getElementById("lid").style.transform="rotateX(120deg)"
+
+document.getElementById("letter").style.display="block"
+
+createHearts()
+
+}
+
+/* hearts */
+
+function createHearts(){
+
+for(let i=0;i<40;i++){
+
+let heart=document.createElement("div")
+
+heart.className="heart"
+
+heart.innerHTML="💖"
+
+heart.style.left=Math.random()*100+"vw"
+
+heart.style.top="80vh"
+
+document.body.appendChild(heart)
+
+setTimeout(()=>heart.remove(),4000)
+
+}
+
+}
+
+/* stars */
+
+for(let i=0;i<200;i++){
+let star=document.createElement("div")
+star.className="star"
+star.style.left=Math.random()*100+"vw"
+star.style.top=Math.random()*100+"vh"
+document.body.appendChild(star)
+}
+
+/* balloons */
+
+for(let i=0;i<15;i++){
+let b=document.createElement("div")
+b.className="balloon"
+b.style.left=Math.random()*100+"vw"
+b.style.background="hsl("+Math.random()*360+",70%,60%)"
+b.style.animationDuration=(5+Math.random()*5)+"s"
+document.body.appendChild(b)
+}
+
+/* confetti */
+
+for(let i=0;i<120;i++){
+let conf=document.createElement("div")
+conf.className="confetti"
+conf.style.left=Math.random()*100+"vw"
+conf.style.background="hsl("+Math.random()*360+",80%,60%)"
+conf.style.animationDuration=(3+Math.random()*4)+"s"
+conf.style.opacity=Math.random()
+document.body.appendChild(conf)
+}
+
+</script>
+
+</body>
+</html>
